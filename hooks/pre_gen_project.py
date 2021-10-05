@@ -1,5 +1,10 @@
+"""Hooks to be run after creating project from this cookiecutter template."""
+
+
 def deprecation_warning():
-    print("""
+    """Print depracation warning for cookiecutter data science v1."""
+    print(
+        """
 
 =============================================================================
 *** DEPRECATION WARNING ***
@@ -16,7 +21,8 @@ For example:
     cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
 =============================================================================
 
-    """)
+    """
+    )
 
 
 deprecation_warning()

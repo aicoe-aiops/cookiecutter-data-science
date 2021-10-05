@@ -19,12 +19,18 @@ repos:
       - id: check-symlinks
       - id: detect-private-key
       - id: check-ast
+        # Exclude since it contains Jinja templating which this hook cannot parse
+        exclude: '{{ cookiecutter.repo_name }}/setup.py'
       - id: debug-statements
+        # Exclude since it contains Jinja templating which this hook cannot parse
+        exclude: '{{ cookiecutter.repo_name }}/setup.py'
 
   - repo: git://github.com/pycqa/pydocstyle.git
     rev: 6.1.1
     hooks:
       - id: pydocstyle
+        # Exclude since it contains Jinja templating which this hook cannot parse
+        exclude: '{{ cookiecutter.repo_name }}/setup.py'
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.0.1
@@ -45,6 +51,8 @@ repos:
     rev: 21.9b0
     hooks:
       - id: black
+        # Exclude since it contains Jinja templating which this hook cannot parse
+        exclude: '{{ cookiecutter.repo_name }}/setup.py'
 
   - repo: https://github.com/tomcatling/black-nb
     rev: '0.5.0'
@@ -64,3 +72,5 @@ repos:
         additional_dependencies: ['pep8-naming']
         # Ignore all format-related checks as Black takes care of those.
         args: ['--ignore', 'E2,W5', '--select', 'E,W,F,N', '--max-line-length=120']
+        # Exclude since it is not a notebook, Black will take care of it.
+        exclude: '{{ cookiecutter.repo_name }}/setup.py'
