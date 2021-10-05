@@ -36,13 +36,13 @@ spec:
       outputs:
         artifacts:
           - name: rendered_notebook
-            path: "/mnt/data/notebooks/{{inputs.parameters.notebook}}"
+            path: "/mnt/data/notebooks/{{ '{{' }}inputs.parameters.notebook{{ '}}' }}"
             archive:
               none: {}
             s3:
               endpoint: s3.upshift.redhat.com:443
               bucket: <CHANGE_ME>
-              key: "production_data/rendered_notebooks/{{inputs.parameters.notebook}}"
+              key: "production_data/rendered_notebooks/{{ '{{' }}inputs.parameters.notebook{{ '}}' }}"
               accessKeySecret:
                 key: access-key-id
                 name: <SECRET_NAME>
@@ -55,7 +55,7 @@ spec:
         args:
           - --config
           - .jupyter/jupyter_nbconvert_config.py
-          - "notebooks/{{inputs.parameters.notebook}}"
+          - "notebooks/{{ '{{' }}inputs.parameters.notebook{{ '}}' }}"
         # If using different image than built by https://github.com/AICoE/s2i-custom-notebook, please change or remote the workingDir settings
         workingDir: /opt/app-root/backup
         volumeMounts:
@@ -67,7 +67,7 @@ spec:
           - name: RUN_IN_AUTOMATION
             value: "true"
           - name: NOTEBOOK_NAME
-            value: "{{inputs.parameters.notebook}}"
+            value: "{{ '{{' }}inputs.parameters.notebook{{ '}}' }}"
           - name: S3_ENDPOINT_URL
             value: https://s3.upshift.redhat.com
           - name: S3_PROJECT_KEY
