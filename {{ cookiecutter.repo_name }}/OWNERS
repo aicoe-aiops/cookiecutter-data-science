@@ -1,8 +1,12 @@
 # See the OWNERS docs at https://go.k8s.io/owners
 
 approvers:
-  - durandom
-  - tumido
+{%- set applist = cookiecutter.approvers.split(',') %}
+{%- for app in applist %}
+  - {{ app.strip() -}}
+{% endfor %}
 reviewers:
-  - tumido
-  - pacospace
+{%- set revlist = cookiecutter.reviewers.split(',') %}
+{%- for rev in revlist %}
+  - {{ rev.strip() -}}
+{% endfor %}
